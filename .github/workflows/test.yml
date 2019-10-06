@@ -1,0 +1,21 @@
+name: test
+
+# Build only on tag push
+# on:
+#   push:
+#     tags:
+#       - 'v*.*.*'
+on: [push]
+
+jobs:
+  build_osx:
+    runs-on: macOS-10.14
+    steps:
+    - uses: actions/checkout@v1
+    - name: Release test
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: Release.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
