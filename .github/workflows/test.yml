@@ -1,11 +1,10 @@
 name: test
 
-# Build only on tag push
-# on:
-#   push:
-#     tags:
-#       - 'v*.*.*'
-on: [push]
+on:
+  push:
+    tags:
+      - v*.*.*
+  pull_request
 
 jobs:
   build_osx:
